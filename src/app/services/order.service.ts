@@ -77,6 +77,17 @@ export class OrderService {
     )
     return resultDocuments$
   }
+
+
+  docChanges(id):any{
+    return this.afs.doc(`orders/${id}`).snapshotChanges().pipe(
+      map(doc=>{
+        const data = doc.payload.data() as Order;
+        const id = doc.payload.id;
+        return {...data, id}
+      })
+    )
+  }
 }
 
 

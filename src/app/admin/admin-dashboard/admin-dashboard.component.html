@@ -1,4 +1,3 @@
-
 <div class="wrapper">
 
   <div class="row mt-4">
@@ -17,11 +16,11 @@
       <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Все" id="Все" (click)="changeFilter('Все')"
         class="ml-2 mb-2 w-100 btn btn-warning"> Все
         заказы
-    </a>
+      </a>
       <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Новый" id="Новый" (click)="changeFilter('Новый')"
         class="ml-2 mb-2 w-100 btn btn-danger">
         Новый
-    </a>
+      </a>
       <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Сформирован" id="Сформирован"
         (click)="changeFilter('Сформирован')" class="ml-2 mb-2 w-100 btn btn-primary">
         Сформирован
@@ -57,9 +56,16 @@
         <h4>Список заказов по фильтру "{{this.currentCategory}}"</h4>
         <div *ngIf="this.filterArr !==undefined ; else loading ">
           <div *ngIf="this.filterArr.length ; else empty ">
-            <div class="order-list" *ngFor="let order of this.filterArr ; trackBy: trackByItems">
-              <app-admin-order-cards [order]="order "></app-admin-order-cards>
+            <div *ngIf="isAll; else filter">
+              <div class="order-list" *ngFor="let order of this.orderList ; trackBy: trackByItems">
+                <app-admin-order-cards [order]="order "></app-admin-order-cards>
+              </div>
             </div>
+            <ng-template #filter>
+              <div class="order-list" *ngFor="let order of this.filterArr ; trackBy: trackByItems">
+                <app-admin-order-cards [order]="order "></app-admin-order-cards>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>

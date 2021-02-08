@@ -53,7 +53,7 @@ export class AuthService {
         let user = data.data() as User;
         localStorage.setItem('role', user.role)
         if (user.role == 'Клиент'){
-          this.router.navigate(['user-dashboard'])
+          this.router.navigate(['/user/user-dashboard'])
         } else {
           this.router.navigate(['/admin'])
         }

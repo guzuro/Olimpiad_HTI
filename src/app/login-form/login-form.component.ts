@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,12 +7,13 @@ import { AuthService } from '../services/auth.service';
   styles: [
   ]
 })
+
 export class LoginFormComponent implements OnInit {
 
   email:string;
   password:string;
 
-  constructor(private authService:AuthService) { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit(): void {
   }

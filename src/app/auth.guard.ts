@@ -47,7 +47,7 @@ import { AuthService } from './services/auth.service';
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable < boolean > | Promise < boolean > | boolean {
       if (this.authService.isAuth == true && state.url == '/login') {
-        this.router.navigate(['user-dashboard'])
+        this.router.navigate(['/user/user-dashboard'])
         return false
       }
       return true

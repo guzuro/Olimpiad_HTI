@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from '../models/order';
-import { AuthService } from '../services/auth.service';
-import { OrderService } from '../services/order.service';
+import { Order } from '../../models/order';
+import { AuthService } from '../../services/auth.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -28,7 +28,7 @@ export class OrdersListComponent implements OnInit {
   }
 
   openItem(orderId){
-    this.router.navigate([`my-orders/order/${orderId}`]);
+    this.router.navigate([`user/my-orders/order/${orderId}`]);
   }
 
   }

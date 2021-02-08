@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../models/order';
-import { User } from '../models/user';
-import { AuthService } from '../services/auth.service';
-import { OrderService } from '../services/order.service';
+import { Order } from '../../models/order';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-place-order',

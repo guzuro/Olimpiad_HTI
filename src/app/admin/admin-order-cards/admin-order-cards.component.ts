@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Order } from '../models/order';
-import { AuthService } from '../services/auth.service';
-import { OrderService } from '../services/order.service';
+import { Order } from '../../models/order';
+import { AuthService } from '../../services/auth.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-admin-order-cards',
@@ -20,5 +20,12 @@ export class AdminOrderCardsComponent implements OnInit {
   }
   changeStatus(id, newStatus){
     this.orderService.changeOrderStatus(id, newStatus);
+    this.watchChanges(id);
+  }
+
+  watchChanges(id){
+    this.orderService.docChanges(id).subscribe(item=>{
+      this.order = item;
+    })
   }
 }

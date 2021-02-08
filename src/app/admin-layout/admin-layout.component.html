@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+  
+      <a class="navbar-brand" routerLink="">MS Logistics | Панель работника</a>
+      <ul class="navbar-nav ml-auto">
+        <!-- <li class="nav-item">
+          <a ngif class="nav-link" routerLinkActive="active" routerLink="/place-order">Разметить заказ на доставку</a>
+        </li>
+
+        <li class="nav-item" *ngIf="this.authService.isAuth">
+          <a ngif class="nav-link" routerLinkActive="active" routerLink="/my-orders">Мои заказы</a>
+        </li>
+        <li class="nav-item" *ngIf="!this.authService.isAuth">
+          <a ngif class="nav-link" routerLinkActive="active" routerLink="/login">Войти в аккаунт</a>
+        </li> -->
+        <li class="nav-item" *ngIf="this.authService.isAuth">
+          <a ngif class="nav-link" routerLinkActive="active" routerLink="profile">Мой профиль</a>
+        </li>
+        <li class="nav-item" *ngIf="this.authService.isAuth">
+          <button (click)="logout()" class="btn btn-danger">Выйти</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  

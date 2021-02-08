@@ -1,0 +1,21 @@
+<h4 class="text-center mt-5">Подробности заказа №{{this.id}}</h4>
+
+<div *ngIf="order" class="text-center">
+  <b> Имя отправителя: </b>{{order.order.customer_name}}<br>
+  <b> Фамилия отправителя:</b> {{order.order.customer_lastname}}<br>
+  <b> Имя получателя:</b> {{order.order.recipient_name}}<br>
+  <b> Фамилия получателя:</b> {{order.order.recipient_lastname}}<br>
+  <b>Адрес отправления:</b> {{order.order.start}}<br>
+  <b>Адрес получения:</b> {{order.order.end}}<br>
+  <b> Содержимое посылки: </b>{{order.order.description}}<br>
+  <b> Статус заказа:</b> {{order.order.status}} <br>
+
+  <div class="row mt-4">
+    <div class="col">
+      <button class="btn btn-primary" (click)="goBack()">Назад</button>
+    </div>
+    <div class="col">
+      <button [disabled]="order.order.status!=='Новый' || order.order.status=='Отменен'" class="btn btn-warning" (click)="changeOrderStatus('Отменен')">Отменить заказ</button>
+    </div>
+  </div>
+</div>

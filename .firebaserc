@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nti-second": {
+      "hosting": {
+        "nti-second": [
+          "nti-second"
+        ]
+      }
+    }
+  }
+}

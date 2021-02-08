@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <h4>Мои заказы на доставку</h4>
+
+  <ul>
+    <li *ngFor="let order of ordersId">
+     Заказ<a (click)="openItem(order)">
+      № {{order}}
+      </a>
+    </li>
+  </ul>
+</div>

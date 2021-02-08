@@ -1,0 +1,51 @@
+<div class="card mb-3">
+  <h5 class="card-header">Заказ № {{order.id}}</h5>
+  <div class="card-body">
+    <h5> <b> Статус заказа:</b> {{order.order.status}}</h5>
+    <div class="row mb-2">
+      <div class="col">
+        <b> Имя отправителя: </b>{{order.order.customer_name}}
+      </div>
+      <div class="col">
+        <b> Имя получателя:</b> {{order.order.recipient_name}}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <b> Фамилия отправителя:</b> {{order.order.customer_lastname}}
+      </div>
+      <div class="col">
+        <b> Фамилия получателя:</b> {{order.order.recipient_lastname}}
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <b>Адрес отправления:</b> {{order.order.start}}
+      </div>
+      <div class="col">
+        <b>Адрес получения:</b> {{order.order.end}}
+      </div>
+    </div>
+    <b> Содержимое посылки: </b>{{order.order.description}}
+
+  </div>
+  <div class="col-10 ml-auto mr-auto mb-2">
+    <button (click)="changeStatus(order.id,'Сформирован')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="Новый"' *ngIf="authService.userRole=='Менеджер'">Сформировать</button>
+
+    <button (click)="changeStatus(order.id, 'Комплектуется')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="Сформирован"' *ngIf="authService.userRole=='Менеджер'">К комплектации</button>
+
+    <button (click)="changeStatus(order.id, 'Укомплектован')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="Комплектуется"' *ngIf="authService.userRole=='Склад'">Укомплектовать</button>
+
+    <button (click)="changeStatus(order.id, 'В работе')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="Укомплектован"' *ngIf="authService.userRole=='Менеджер'">В работу</button>
+
+    <button (click)="changeStatus(order.id, 'Доставляется')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="В работе"' *ngIf="authService.userRole=='Курьер'">Принят курьером</button>
+
+    <button (click)="changeStatus(order.id, 'Готов')" class="btn btn-primary ml-2"
+      [disabled]='order.order.status!=="Доставляется"' *ngIf="authService.userRole=='Курьер'">Готов</button>
+  </div>
+</div>

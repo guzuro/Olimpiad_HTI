@@ -2,6 +2,7 @@
   <h5 class="card-header">Заказ № {{order.id}}</h5>
   <div class="card-body">
     <h5> <b> Статус заказа:</b> {{order.order.status}}</h5>
+ <b>Дата оформления: </b>{{order.order.date.seconds*1000  | date:'medium':'ru'}}
     <div class="row mb-2">
       <div class="col">
         <b> Имя отправителя: </b>{{order.order.customer_name}}

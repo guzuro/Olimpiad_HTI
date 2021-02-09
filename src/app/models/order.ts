@@ -9,4 +9,5 @@ export interface Order {
     description:string;
     status?:string;
     user?:any;
+    date: Date;
 }

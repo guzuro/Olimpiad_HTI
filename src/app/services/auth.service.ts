@@ -42,7 +42,7 @@ export class AuthService {
         role: "Клиент"
       }).then(()=>{
         localStorage.setItem('role', "Клиент")
-        this.router.navigate(['user-dashboard'])
+        this.router.navigate(['/user/user-dashboard'])
         this.alert.success("Вы зарегистрировались");
       })
     }, err=>{

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" routerLink="">Главная</a>
-    <ul class="navbar-nav ml-auto">
+    <a class="navbar-brand" routerLink="">MS Logistics </a>
+    <ul class="navbar-nav">
       <li class="nav-item" *ngIf="!this.authService.isAuth">
         <a ngif class="nav-link" routerLinkActive="active" routerLink="/login">Войти в аккаунт</a>
       </li>
@@ -9,8 +9,7 @@
   </div>
 </nav>
 
-<div class="wrapper">
-  <div class="col-6 ml-auto mr-auto text-left">
+  <div class="col-md-6 ml-auto mr-auto text-left">
     <h3 class="text-center mb-3">Форма входа</h3>
     <div class="container text-center">
       <div class="alert alert-danger" *ngIf="message">
@@ -32,9 +31,25 @@
           Введите пароль
         </small>
       </div>
-      <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signIn()" class="mb-2 btn btn-primary"
-        style="margin-left:5px;">Войти</button><br>
-      <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signUp()"
-        class="btn btn-success">Зарегистрироваться</button>
+
+      <div class="row text-left mt-5">
+        <div class="col-6">
+          <h6 class="mb-2">Предопределенные учетные записи</h6>
+          <button (click)="signIn('customer@customer.cm', 'customer@customer.cm')" class="mb-2 btn btn-primary" style="margin-left:5px;">Войти как клиент</button> <br>
+          <button (click)="signIn('manager@manager.mg','manager@manager.mg')" class="mb-2 btn btn-primary"
+            style="margin-left:5px;">Войти как менеджер</button><br>
+          <button (click)="signIn('warehouse@warehouse.wh', 'warehouse@warehouse.wh')" class="mb-2 btn btn-primary"
+            style="margin-left:5px;">Войти как складской рабочий</button><br>
+          <button (click)="signIn('courier@courier.cr', 'courier@courier.cr')" class="mb-2 btn btn-primary"
+            style="margin-left:5px;">Войти как курьер</button><br>
+        </div>
+        <div class="col-6">
+          <h6 class="mb-2">Создать и войти через свой профиль</h6>
+          <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signIn()" class="mb-2 btn btn-primary"
+            style="margin-left:5px;">Войти</button><br>
+          <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signUp()"
+            class="btn btn-success">Зарегистрироваться</button>
+        </div>
+      </div>
     </div>
-  </div>
+

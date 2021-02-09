@@ -18,7 +18,7 @@ export class OrderService {
   orders: Observable<Order[]>;
 
   constructor(private afs:AngularFirestore,  private alert:AlertService, private router: Router) {
-    this.orderCollectionRef = this.afs.collection('orders');
+    this.orderCollectionRef = this.afs.collection('orders', orders => orders.orderBy('order.date', "desc"));
     this.orders = this.orderCollectionRef.snapshotChanges().pipe(
       map(data => data.map(a=>{
         const data =  a.payload.doc.data() as Order;
@@ -75,7 +75,7 @@ export class OrderService {
   }
 
   getOrdersByStatus(stat) {
-    const collectionRef = this.afs.collection("orders", orders=> orders.where('order.status', '==', stat))
+    const collectionRef = this.afs.collection("orders", orders=> orders.where('order.status', '==', stat).orderBy('order.date', 'desc'))
     const resultDocuments$ = collectionRef.snapshotChanges().pipe(
       map(data=>data.map(a=>{
         const id = a.payload.doc.id;

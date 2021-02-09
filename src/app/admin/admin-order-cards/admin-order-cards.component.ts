@@ -11,7 +11,7 @@ import { OrderService } from '../../services/order.service';
 export class AdminOrderCardsComponent implements OnInit {
   @Input() order: {
     id:string;
-    order:Order;
+    order:any;
   };
 
   constructor(public authService:AuthService, private orderService:OrderService) { }

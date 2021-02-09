@@ -1,14 +1,16 @@
+<ul>
+  <h3 class="mb-2">Мои заказы</h3>
 
-  <ul>
-    <h3 class="mb-2">Мои заказы</h3>
-
-    <div *ngIf="ordersId; else loading">
+  <div *ngIf="ordersId; else loading">
+    <div *ngIf="ordersId.length;else empty">
       <li style="font-size: 18px;" class="text-left mb-1" *ngFor="let order of ordersId">
         Заказ<a (click)="openItem(order)">
           №{{order}}
         </a>
       </li>
     </div>
-  </ul>
+  </div>
+</ul>
 
-  <ng-template #loading> Загрузка...</ng-template>
+<ng-template #loading> Загрузка...</ng-template>
+<ng-template #empty> Вы еще не заказывали доставки </ng-template>

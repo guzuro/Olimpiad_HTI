@@ -36,6 +36,7 @@ export class PlaceOrderComponent implements OnInit {
       start: this.start,
       end: this.end,
       description: this.description,
+      date: new Date(),
       status: "Новый",
       user: {
         email: this.data.email,
@@ -43,17 +44,6 @@ export class PlaceOrderComponent implements OnInit {
       }
     }
     this.orderService.placeOrder(order)
-    // this.resetForm()
   }
-
-  // resetForm() {
-  //   this.customer_name = "";
-  //   this.customer_lastname = "";
-  //   this.recipient_name = "";
-  //   this.recipient_lastname = "";
-  //   this.start = "";
-  //   this.end = "";
-  //   this.description = "";
-  // }
 
 }

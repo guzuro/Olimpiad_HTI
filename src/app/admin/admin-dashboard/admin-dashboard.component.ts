@@ -40,7 +40,7 @@ export class AdminDashboardComponent implements OnInit {
   
   getOrders() {
     let all = this.orderService.getAllOrdersId().subscribe(items => {
-      this.orderList = items
+      this.orderList = items;
     })
   }
 

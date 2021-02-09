@@ -1,5 +1,5 @@
   <div class="row mt-4">
-    <div class="col-2 text-сenter">
+    <div class="col-md-2 text-сenter">
       <h4 class="">Фильтры по статусу</h4>
       <!-- Статус "НОВЫЙ" ->> СФОРМИРОВАТЬ; статус "УКОМПЛЕКТОВАН" ->> В РАБОТУ; статус "В РАБОТЕ"; статус "ДОСТАВЛЯЕТСЯ"-->
       <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Все" id="Все" (click)="changeFilter('Все')"
@@ -40,7 +40,7 @@
       </a>
     </div>
 
-    <div class="col-10">
+    <div class="col-md-10">
       <div *ngIf="this.orderList!== undefined; else loading">
         <h3 class="mb-2 mt-2">Список заказов по фильтру "{{this.currentCategory}}"</h3>
         <div *ngIf="this.filterArr !==undefined ; else loading ">

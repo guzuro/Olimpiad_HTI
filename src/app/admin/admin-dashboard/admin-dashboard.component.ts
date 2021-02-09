@@ -24,20 +24,21 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('user'));
     this.userRole = localStorage.getItem('role')
-    this.getOrders();
-    this.isAll = true;
-
-    setTimeout(() => {
       if(this.userRole=='Менеджер'){
-        document.getElementById("Все").click()
+        this.isAll = true;
+        this.currentCategory = "Все"
+        this.getOrders();
       } if(this.userRole == 'Склад'){
-        document.getElementById("Комплектуется").click()
+        this.isAll = false;
+        this.currentCategory = "Комплектуются"
+        this.changeFilter("Комплектуется")
       } if(this.userRole == 'Курьер'){
-        document.getElementById("Вработе").click()
+        this.isAll = false;
+        this.currentCategory = "В работе"
+        this.changeFilter("В работе")
       }
-    },1500); 
   }
-  
+
   getOrders() {
     let all = this.orderService.getAllOrdersId().subscribe(items => {
       this.orderList = items;
@@ -46,21 +47,18 @@ export class AdminDashboardComponent implements OnInit {
 
   currentCategory: string;
   changeFilter(filter) {
-    console.log(filter);
     this.currentCategory = filter;
     if (filter == "Все") {
       this.isAll = true;
       this.filterArr = this.orderList;
-
     } else {
       this.isAll = false;
       let sub = this.orderService.getOrdersByStatus(filter).subscribe(items=>{
         this.filterArr = items;
         sub.unsubscribe()
       })
-   }
+    }
   }
-
 
 trackByItems(index: number, order: Order): string { return order.id; }
 

@@ -2,63 +2,66 @@
     <div class="col-md-2 text-сenter">
       <h4 class="">Фильтры по статусу</h4>
       <!-- Статус "НОВЫЙ" ->> СФОРМИРОВАТЬ; статус "УКОМПЛЕКТОВАН" ->> В РАБОТУ; статус "В РАБОТЕ"; статус "ДОСТАВЛЯЕТСЯ"-->
-      <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Все" id="Все" (click)="changeFilter('Все')"
+      <button *ngIf="this.userRole == 'Менеджер'" id="Все" (click)="changeFilter('Все')"
         class="ml-2 mb-2 w-100 btn btn-warning"> Все
         заказы
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Новый" id="Новый" (click)="changeFilter('Новый')"
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер'" id="Новый" (click)="changeFilter('Новый')"
         class="ml-2 mb-2 w-100 btn btn-danger">
         Новый
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Сформирован" id="Сформирован"
-        (click)="changeFilter('Сформирован')" class="ml-2 mb-2 w-100 btn btn-primary">
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер'" id="Сформирован" (click)="changeFilter('Сформирован')"
+        class="ml-2 mb-2 w-100 btn btn-primary">
         Сформирован
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Склад'" href="/admin/admin-panel#Комплектуется"
-        id="Комплектуется" (click)="changeFilter('Комплектуется')" class="ml-2 mb-2 w-100 btn btn-primary">
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Склад'" id="Комплектуется"
+        (click)="changeFilter('Комплектуется')" class="ml-2 mb-2 w-100 btn btn-primary">
         Комплектуется
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Склад'" href="/admin/admin-panel#Укомплектован"
-        id="Укомплектован" (click)="changeFilter('Укомплектован')" class="ml-2 mb-2 w-100 btn btn-primary">
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Склад'" id="Укомплектован"
+        (click)="changeFilter('Укомплектован')" class="ml-2 mb-2 w-100 btn btn-primary">
         Укомплектован
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" href="/admin/admin-panel#Вработе" id="Вработе"
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" id="Вработе"
         (click)="changeFilter('В работе')" class="ml-2 mb-2 w-100 btn btn-primary">
         В работе
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" href="/admin/admin-panel#Доставляется"
-        id="Доставляется" (click)="changeFilter('Доставляется')" class="ml-2 mb-2 w-100 btn btn-primary">
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" id="Доставляется"
+        (click)="changeFilter('Доставляется')" class="ml-2 mb-2 w-100 btn btn-primary">
         Доставляется
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" href="/admin/admin-panel#Готов" id="Готов"
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер' || this.userRole == 'Курьер'" id="Готов"
         (click)="changeFilter('Готов')" class="ml-2 mb-2 w-100 btn btn-success">
         Готов
-      </a>
-      <a *ngIf="this.userRole == 'Менеджер'" href="/admin/admin-panel#Отменен" id="Отменен"
-        (click)="changeFilter('Отменен')" class="ml-2 mb-2 w-100 btn btn-danger">
+      </button>
+      <button *ngIf="this.userRole == 'Менеджер'" id="Отменен" (click)="changeFilter('Отменен')"
+        class="ml-2 mb-2 w-100 btn btn-danger">
         Отменен
-      </a>
+      </button>
     </div>
 
+
     <div class="col-md-10">
-      <div *ngIf="this.orderList!== undefined; else loading">
-        <h3 class="mb-2 mt-2">Список заказов по фильтру "{{this.currentCategory}}"</h3>
-        <div *ngIf="this.filterArr !==undefined ; else loading ">
-          <div *ngIf="this.filterArr.length ; else empty ">
-            <div *ngIf="isAll; else filter">
-              <div class="order-list" *ngFor="let order of this.orderList ; trackBy: trackByItems">
-                <app-admin-order-cards [order]="order "></app-admin-order-cards>
-              </div>
+      <h3 class="mb-2 mt-2">Список заказов по фильтру "{{this.currentCategory}}"</h3>
+      <div *ngIf="isAll;else filter">
+        <div *ngIf="this.orderList!==undefined; else loading">
+          <div *ngIf="this.orderList.length; else empty">
+            <div class="order-list" *ngFor="let order of this.orderList ; trackBy: trackByItems">
+              <app-admin-order-cards [order]="order "></app-admin-order-cards>
             </div>
-            <ng-template #filter>
-              <div class="order-list" *ngFor="let order of this.filterArr ; trackBy: trackByItems">
-                <app-admin-order-cards [order]="order "></app-admin-order-cards>
-              </div>
-            </ng-template>
           </div>
         </div>
       </div>
-      <ng-template #empty>Заказов по этому статусу нет</ng-template>
-      <ng-template #loading>Загрузка...</ng-template>
+      <ng-template #filter>
+        <div *ngIf="this.filterArr!==undefined; else loading">
+          <div *ngIf="this.filterArr.length; else empty">
+            <div class="order-list" *ngFor="let order of this.filterArr ; trackBy: trackByItems">
+              <app-admin-order-cards [order]="order "></app-admin-order-cards>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
-  </div>
+
+    <ng-template #empty>Заказов нет...</ng-template>
+    <ng-template #loading>Загрузка...</ng-template>

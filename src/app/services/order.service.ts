@@ -30,7 +30,6 @@ export class OrderService {
 
   getAllOrdersId() {
     return this.orders
-
   }
 
   placeOrder(order:Order){
@@ -85,7 +84,6 @@ export class OrderService {
     return resultDocuments$
   }
 
-
   docChanges(id):any{
     return this.afs.doc(`orders/${id}`).snapshotChanges().pipe(
       map(doc=>{
@@ -96,5 +94,3 @@ export class OrderService {
     )
   }
 }
-
-

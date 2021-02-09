@@ -33,7 +33,6 @@ export class LoginFormComponent implements OnInit {
   }
   
   signIn(email?:string, password?:string){
-
    this.authService.signIn(this.email || email, this.password || password)
   }
 }

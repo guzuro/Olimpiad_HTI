@@ -9,13 +9,21 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { FormsModule } from '@angular/forms';
-import { AuthGuard, LoginRedirect } from './auth.guard';
+import { AuthGuard, isEmployer, LoginRedirect } from './auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+//уведомления
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+
 
 @NgModule({
   declarations: [
     AppComponent,
 
     LoginFormComponent,
+
+    PageNotFoundComponent,
 
 
   ],
@@ -26,11 +34,13 @@ import { AuthGuard, LoginRedirect } from './auth.guard';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    BrowserAnimationsModule, 
+    SimpleNotificationsModule.forRoot()
 
   ],
   exports:[
   ],
-  providers: [AuthGuard, LoginRedirect],
+  providers: [AuthGuard, LoginRedirect, isEmployer],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

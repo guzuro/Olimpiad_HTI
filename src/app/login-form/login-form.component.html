@@ -1,28 +1,40 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" routerLink="">Главная</a>
     <ul class="navbar-nav ml-auto">
-
       <li class="nav-item" *ngIf="!this.authService.isAuth">
         <a ngif class="nav-link" routerLinkActive="active" routerLink="/login">Войти в аккаунт</a>
       </li>
-
     </ul>
   </div>
 </nav>
-<div class="container">
-    <div class="alert alert-danger">
+
+<div class="wrapper">
+  <div class="col-6 ml-auto mr-auto text-left">
+    <h3 class="text-center mb-3">Форма входа</h3>
+    <div class="container text-center">
+      <div class="alert alert-danger" *ngIf="message">
+        {{message}}
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email_input">Email:</label>
+        <input [(ngModel)]="this.email" class="form-control" type="email" name="email" #userEmail="ngModel" required
+          id="email_input">
+        <small [hidden]="userEmail.valid || userEmail.untouched">
+          Введите логин
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="password_input">Пароль:</label>
+        <input [(ngModel)]="this.password" class="form-control" type="password" name="password" #userPassword="ngModel"
+          required id="password_input">
+        <small [hidden]="userPassword.valid || userPassword.untouched">
+          Введите пароль
+        </small>
+      </div>
+      <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signIn()" class="mb-2 btn btn-primary"
+        style="margin-left:5px;">Войти</button><br>
+      <button [disabled]="userEmail.invalid || userPassword.invalid" (click)="signUp()"
+        class="btn btn-success">Зарегистрироваться</button>
     </div>
-    <div class="form-group">
-      <label class="form-label" for="email_input">Почта:</label>
-      <input [(ngModel)]="this.email" class="form-control" type="email" name="email" id="email_input">
-    </div>
-    <div class="form-group">
-      <label for="password_input">Пароль:</label>
-      <input [(ngModel)]="this.password" class="form-control" type="password" name="password" id="password_input">
-    </div>
-    <button (click)="signUp()" class="btn btn-success">Зарегистрироваться</button>
-    <button (click)="signIn()" class="btn btn-primary" style="margin-left:5px;">Войти</button>
   </div>
-  

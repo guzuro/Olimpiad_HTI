@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" routerLink="/user">Главная</a>
-    <ul class="navbar-nav ml-auto">
+    <a class="navbar-brand" routerLink="">Главная</a>
+    <ul class="navbar-nav ">
       <li class="nav-item" *ngIf="this.authService.isAuth ">
         <a ngif class="nav-link" routerLinkActive="active" routerLink="place-order">Разметить заказ на доставку</a>
       </li>
@@ -14,13 +14,16 @@
       <li class="nav-item" *ngIf="!this.authService.isAuth">
         <a ngif class="nav-link" routerLinkActive="active" routerLink="login">Войти в аккаунт</a>
       </li>
-      <li class="nav-item" *ngIf="this.authService.isAuth">
-        <button (click)="logout()" class="btn btn-danger">Выйти</button>
-      </li>
+
     </ul>
+    <li class="nav-item ml-auto" *ngIf="this.authService.isAuth">
+      <button (click)="logout()" class="btn btn-danger">Выйти</button>
+    </li>
   </div>
 </nav>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <div class="wrapper">
+    <router-outlet></router-outlet>
+  </div>
 </div>

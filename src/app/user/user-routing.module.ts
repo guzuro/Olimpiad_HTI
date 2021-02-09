@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, LoginRedirect } from '../auth.guard';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 // import { LoginFormComponent } from '../login-form/login-form.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
@@ -15,6 +16,8 @@ const routes: Routes = [
       { path: 'place-order', component: PlaceOrderComponent, canActivate:[AuthGuard] },
       { path: 'my-orders', component: OrdersListComponent, canActivate:[AuthGuard] },
       { path: 'my-orders/order/:id', component: OrderInfoComponent, canActivate:[AuthGuard] },
+      {path: '**', component: PageNotFoundComponent}
+
     ] 
   },
   

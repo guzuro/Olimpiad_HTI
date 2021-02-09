@@ -1,11 +1,14 @@
-<div class="wrapper">
-  <h4>Мои заказы на доставку</h4>
 
   <ul>
-    <li *ngFor="let order of ordersId">
-     Заказ<a (click)="openItem(order)">
-      № {{order}}
-      </a>
-    </li>
+    <h3 class="mb-2">Мои заказы</h3>
+
+    <div *ngIf="ordersId; else loading">
+      <li style="font-size: 18px;" class="text-left mb-1" *ngFor="let order of ordersId">
+        Заказ<a (click)="openItem(order)">
+          №{{order}}
+        </a>
+      </li>
+    </div>
   </ul>
-</div>
+
+  <ng-template #loading> Загрузка...</ng-template>

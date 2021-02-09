@@ -12,14 +12,13 @@ import { OrderService } from '../../services/order.service';
 
 export class PlaceOrderComponent implements OnInit {
 
-  customer_name:string;
-  customer_lastname:string;
-  recipient_name:string;
-  recipient_lastname:string;
-
-  start:string;
-  end:string;
-  description:string;
+  customer_name: string;
+  customer_lastname: string;
+  recipient_name: string;
+  recipient_lastname: string;
+  start: string;
+  end: string;
+  description: string;
 
   constructor(private authService: AuthService, private orderService: OrderService) {}
   data: any;
@@ -29,7 +28,7 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   submitForm() {
-    let order:Order = {
+    let order: Order = {
       customer_name: this.customer_name,
       customer_lastname: this.customer_lastname,
       recipient_name: this.recipient_name,
@@ -44,6 +43,17 @@ export class PlaceOrderComponent implements OnInit {
       }
     }
     this.orderService.placeOrder(order)
+    // this.resetForm()
   }
 
-  }
+  // resetForm() {
+  //   this.customer_name = "";
+  //   this.customer_lastname = "";
+  //   this.recipient_name = "";
+  //   this.recipient_lastname = "";
+  //   this.start = "";
+  //   this.end = "";
+  //   this.description = "";
+  // }
+
+}

@@ -6,7 +6,7 @@ ul{
 
 li{
     list-style: none;
-    margin: 0px 0px 10px 0px;
+    /* margin: 0px 0px 10px 0px; */
     font-size: 18px;
 }
 li:hover{
@@ -15,5 +15,15 @@ li:hover{
 }
 .wrapper{
     text-align: center;
-    margin: 50px 0px 0px 0px;
+    margin: 50px 0px 50px 0px;
 }
+
+.ng-touched.ng-invalid{
+    border: red 2px solid;
+}
+
+.ng-touched.ng-valid{
+    border: green 2px solid;
+}    
+
+small{color:red}

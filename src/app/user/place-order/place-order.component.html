@@ -1,40 +1,73 @@
-<div class="wrapper mt-5">
-    <h2 class="mb-5">Оформить заявку на доставку</h2>
+  <h3 class="mb-5">Оформить заявку на доставку</h3>
   <div class="row">
     <div class="form-group col">
       <label for="customer_name">Имя отправителя</label>
-      <input [(ngModel)]="this.customer_name" type="text" class="form-control" id="customer_name" name="customer_name" />
+      <input [(ngModel)]="this.customer_name" type="text" class="form-control" id="customer_name" name="customer_name"
+        #start_name="ngModel" required />
+      <small [hidden]="start_name.valid || start_name.untouched">
+        Введите имя отправителя
+      </small>
     </div>
     <div class="form-group col">
       <label for="customer_lastname">Фамилия отправителя</label>
-      <input [(ngModel)]="this.customer_lastname" type="text" class="form-control" id="customer_lastname" name="customer_lastname" />
+      <input [(ngModel)]="this.customer_lastname" type="text" class="form-control" id="customer_lastname"
+        name="customer_lastname" #start_lastname="ngModel" required />
+      <small [hidden]="start_lastname.valid || start_lastname.untouched">
+        Введите фамилию отправителя
+      </small>
     </div>
   </div>
   <div class="row">
     <div class="form-group col">
       <label for="customer_name">Имя получателя</label>
-      <input [(ngModel)]="this.recipient_name" type="text" class="form-control" id="recipient_name" name="recipient_name" />
+      <input [(ngModel)]="this.recipient_name" type="text" class="form-control" id="recipient_name"
+        name="recipient_name" #end_name="ngModel" required />
+      <small [hidden]="end_name.valid || end_name.untouched">
+        Введите имя получателя
+      </small>
     </div>
     <div class="form-group col">
       <label for="customer_lastname">Фамилия получателя</label>
-      <input [(ngModel)]="this.recipient_lastname" type="text" class="form-control" id="recipient_lastname" name="recipient_lastname" />
+      <input [(ngModel)]="this.recipient_lastname" type="text" class="form-control" id="recipient_lastname"
+        name="recipient_lastname" #end_lastname="ngModel" required />
+      <small [hidden]="end_lastname.valid || end_lastname.untouched">
+        Введите фамилию получателя
+      </small>
     </div>
   </div>
   <div class="row">
     <div class="form-group col">
       <label for="customer_start">Адрес отправления</label>
-      <input  [(ngModel)]="this.start" type="text" class="form-control" id="customer_start" name="start" />
+      <input [(ngModel)]="this.start" type="text" class="form-control" id="customer_start" name="start"
+        #start_point="ngModel" required />
+      <small [hidden]="start_point.valid || start_point.untouched">
+        Введите адрес отправления
+      </small>
     </div>
     <div class="form-group col">
       <label for="customer_end">Адрес получения</label>
-      <input  [(ngModel)]="this.end" type="text" class="form-control" id="customer_end" name="end" />
+      <input [(ngModel)]="this.end" type="text" class="form-control" id="customer_end" name="end" #end_point="ngModel"
+        required />
+      <small [hidden]="end_point.valid || end_point.untouched">
+        Введите адрес получения
+      </small>
     </div>
   </div>
   <div class="form-group">
     <label for="type">Содержимое посылки</label>
-    <input  [(ngModel)]="this.description" type="text" class="form-control" id="type" name="type" />
+    <input [(ngModel)]="this.description" type="text" class="form-control" id="type" name="type" #item_about="ngModel"
+      required />
+    <small [hidden]="item_about.valid || item_about.untouched">
+      Введите данные по посылке
+    </small>
   </div>
 
-  <button type="submit" (click)="submitForm()" class="btn btn-primary">Оформить</button>
-
-</div>
+  <button [disabled]="item_about.invalid 
+  || end_point.invalid 
+  || start_point.invalid 
+  || start_name.invalid 
+  || start_lastname.invalid 
+  || end_name.invalid 
+  || end_lastname.invalid " type="submit" (click)="submitForm()" class="btn btn-primary">
+    Оформить
+  </button>

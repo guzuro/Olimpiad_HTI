@@ -6,6 +6,8 @@ import firebase from 'firebase/app'
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { User } from '../models/user';
+import { AlertService } from './alert.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class OrderService {
   orderCollectionRef: AngularFirestoreCollection<Order>;
   orders: Observable<Order[]>;
 
-  constructor(private afs:AngularFirestore) {
+  constructor(private afs:AngularFirestore,  private alert:AlertService, private router: Router) {
     this.orderCollectionRef = this.afs.collection('orders');
     this.orders = this.orderCollectionRef.snapshotChanges().pipe(
       map(data => data.map(a=>{
@@ -38,6 +40,9 @@ export class OrderService {
       this.afs.collection('users').doc(order.user.uid).update({
         orders: firebase.firestore.FieldValue.arrayUnion(response.id)
       })
+    }).then(()=>{
+      this.router.navigate(['/user/my-orders'])
+      this.alert.success("Заказ оформлен")
     })
   }
 
@@ -64,6 +69,8 @@ export class OrderService {
   changeOrderStatus(orderId, newStatus){
     this.afs.collection('orders').doc(orderId).update({
     "order.status" :newStatus
+    }).then(()=>{
+      this.alert.changeStatusInfo(orderId, newStatus)
     })
   }
 

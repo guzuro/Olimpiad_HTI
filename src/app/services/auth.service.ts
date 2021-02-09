@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { AlertService } from './alert.service';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { User } from '../models/user';
 })
 export class AuthService {
 
-  constructor(private auth:AngularFireAuth, private afs:AngularFirestore, private router: Router) { }
+  constructor(private auth:AngularFireAuth, private afs:AngularFirestore, private router: Router, private alert:AlertService) { }
 
   _role:string;
 
@@ -42,7 +43,20 @@ export class AuthService {
       }).then(()=>{
         localStorage.setItem('role', "Клиент")
         this.router.navigate(['user-dashboard'])
+        this.alert.success("Вы зарегистрировались");
       })
+    }, err=>{
+      switch (err.code) {
+        case 'auth/invalid-email':
+          this.alert.error("Неверный email");
+        break;
+        case 'auth/email-already-in-use':
+          this.alert.error("Такой Email уже используется");
+          break;
+        case "auth/weak-password":
+          this.alert.error("Слабый пароль");
+          break;
+      }
     })
   }
 
@@ -57,20 +71,19 @@ export class AuthService {
         } else {
           this.router.navigate(['/admin'])
         }
+        this.alert.success("Вход выполнен");
+
       })
     }, err => {
-      switch (err.message) {
-        case 'signInWithEmailAndPassword failed: First argument "email" must be a valid string.':
-          // this.alert.error("Введите Email", "");
+      switch (err.code) {
+        case 'auth/invalid-email':
+          this.alert.error("Неверный email");
+        break;
+        case 'auth/user-not-found':
+          this.alert.error("не существующий пользователь");
           break;
-        case 'signInWithEmailAndPassword failed: Second argument "password" must be a valid string.':
-          // this.alert.error("Введите пароль", "");
-          break;
-        case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-          // this.alert.error("не существующий пользователь", "");
-          break;
-        case 'The password is invalid or the user does not have a password.':
-          // this.alert.error("не верный пароль", "");
+        case "auth/wrong-password":
+          this.alert.error("не верный пароль");
           break;
       }
     })

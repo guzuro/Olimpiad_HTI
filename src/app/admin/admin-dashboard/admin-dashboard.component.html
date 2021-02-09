@@ -1,15 +1,4 @@
-<div class="wrapper">
-
   <div class="row mt-4">
-
-    <!-- <div class="col-2">
-      <div *ngIf="this.userData && this.userRole">
-        <h4>Данные аккаунта</h4><br>
-        <b> Email пользователя:</b> {{this.userData.email}} <br><br>
-        <b> Роль:</b> {{this.userRole}} <br>
-      </div>
-    </div> -->
-
     <div class="col-2 text-сenter">
       <h4 class="">Фильтры по статусу</h4>
       <!-- Статус "НОВЫЙ" ->> СФОРМИРОВАТЬ; статус "УКОМПЛЕКТОВАН" ->> В РАБОТУ; статус "В РАБОТЕ"; статус "ДОСТАВЛЯЕТСЯ"-->
@@ -53,7 +42,7 @@
 
     <div class="col-10">
       <div *ngIf="this.orderList!== undefined; else loading">
-        <h4>Список заказов по фильтру "{{this.currentCategory}}"</h4>
+        <h3 class="mb-2 mt-2">Список заказов по фильтру "{{this.currentCategory}}"</h3>
         <div *ngIf="this.filterArr !==undefined ; else loading ">
           <div *ngIf="this.filterArr.length ; else empty ">
             <div *ngIf="isAll; else filter">
@@ -73,4 +62,3 @@
       <ng-template #loading>Загрузка...</ng-template>
     </div>
   </div>
-</div>
